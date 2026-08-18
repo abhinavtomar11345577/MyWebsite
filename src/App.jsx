@@ -72,7 +72,7 @@ function App() {
           <h1>
             I love you,
             <br />
-            <span>Nithu!!</span>
+            <span>Nithila!!</span>
           </h1>
 
           <p className="love-note">
