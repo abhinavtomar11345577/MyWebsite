@@ -1,111 +1,357 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Quicksand:wght@400;500;600&display=swap');
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+* {
   box-sizing: border-box;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  background: #090d24;
+}
+
+.page {
+  min-height: 100vh;
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(121, 115, 190, 0.28), transparent 30%),
+    linear-gradient(180deg, #111838 0%, #171b45 42%, #25235c 65%, #0d1535 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.85) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255,214,236,.55) 1px, transparent 1.5px);
+  background-size: 97px 83px, 151px 127px;
+  opacity: .45;
+  pointer-events: none;
+}
+
+.stars {
+  position: absolute;
+  top: 7%;
+  color: rgba(255, 238, 248, .8);
+  letter-spacing: 14px;
+  font-size: 13px;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.scene {
+  position: relative;
+  width: min(900px, 95vw);
+  height: 390px;
+  margin-top: 20px;
+}
+
+.moon {
+  position: absolute;
+  top: 12px;
+  right: 14%;
+  font-size: 92px;
+  color: #fff1d6;
+  filter: drop-shadow(0 0 24px rgba(255, 239, 205, .35));
+  transform: rotate(-18deg);
+}
+
+.cloud {
+  position: absolute;
+  color: rgba(255, 255, 255, .09);
+  font-size: 80px;
+}
+
+.cloud-one {
+  left: 5%;
+  top: 60px;
+}
+
+.cloud-two {
+  right: 2%;
+  top: 130px;
+  font-size: 60px;
+}
+
+.island {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 65px;
+  width: 460px;
+  height: 145px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 20%, #54704e 0%, #364d3c 45%, #182c2c 75%);
+  box-shadow: 0 25px 35px rgba(0, 0, 0, .28);
+}
+
+.tree {
+  position: absolute;
+  left: 9%;
+  bottom: 72px;
+  width: 115px;
+  height: 230px;
+}
+
+.trunk {
+  position: absolute;
+  bottom: 0;
+  left: 48px;
+  width: 20px;
+  height: 145px;
+  border-radius: 60% 40% 15% 15%;
+  background: linear-gradient(90deg, #4c302c, #8b5b4c, #3d2929);
+  transform: rotate(-5deg);
+}
+
+.crown {
+  position: absolute;
+  top: 0;
+  left: -35px;
+  font-size: 115px;
+  filter: drop-shadow(0 5px 7px rgba(0,0,0,.25));
+}
+
+.girl {
+  position: absolute;
+  left: 53%;
+  bottom: 45px;
+  width: 150px;
+  height: 170px;
+  transform: translateX(-50%);
+}
+
+.head {
+  position: absolute;
+  z-index: 4;
+  top: 20px;
+  left: 52px;
+  width: 55px;
+  height: 65px;
+  border-radius: 48% 48% 45% 45%;
+  background: #f5c7b2;
+}
+
+.hair {
+  position: absolute;
+  z-index: 5;
+  top: 8px;
+  left: 39px;
+  width: 82px;
+  height: 102px;
+  border-radius: 48% 55% 40% 50%;
+  background: #201b31;
+  transform: rotate(-4deg);
+  box-shadow: inset 9px 4px 0 rgba(255,255,255,.035);
+}
+
+.face {
+  position: absolute;
+  z-index: 6;
+  top: 49px;
+  left: 68px;
+  font-size: 15px;
+  color: #6b3e4e;
+}
+
+.body {
+  position: absolute;
+  z-index: 3;
+  top: 82px;
+  left: 38px;
+  width: 100px;
+  height: 88px;
+  border-radius: 45px 45px 20px 20px;
+  background: linear-gradient(135deg, #d99bb3, #8d668f);
+}
+
+.book {
+  position: absolute;
+  z-index: 8;
+  top: 82px;
+  left: 48px;
+  font-size: 50px;
+  transform: rotate(-5deg);
+  filter: drop-shadow(0 4px 3px rgba(0,0,0,.25));
+}
+
+.water {
+  position: absolute;
+  left: -10%;
+  bottom: -15px;
+  width: 120%;
+  height: 125px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: rgba(144, 190, 221, .34);
+  font-size: 26px;
+  letter-spacing: 5px;
+  overflow: hidden;
+}
+
+.water span {
+  white-space: nowrap;
+  animation: waves 8s ease-in-out infinite alternate;
+}
+
+.water span:nth-child(2) {
+  animation-delay: -2s;
+}
+
+.water span:nth-child(3) {
+  animation-delay: -4s;
+}
+
+.message {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.message.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.little-line {
+  margin: 0 0 10px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #e7d8eb;
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
   margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(58px, 9vw, 100px);
+  line-height: .82;
+  font-weight: 600;
+  text-shadow: 0 5px 25px rgba(0,0,0,.25);
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+h1 span {
+  color: #ffc7dc;
+  font-style: italic;
 }
 
-code {
+.love-note {
+  margin-top: 28px;
+  color: #e4dced;
+  line-height: 1.8;
   font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+}
+
+.heart {
+  margin-top: 16px;
+  color: #ffabc9;
+  font-size: 24px;
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+footer {
+  position: absolute;
+  bottom: 20px;
+  z-index: 10;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.45);
+}
+
+.petals {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -40px;
+  font-size: 15px;
+  opacity: .75;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translate3d(0, -40px, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(55px, 25vh, 0) rotate(100deg);
+  }
+  50% {
+    transform: translate3d(-45px, 50vh, 0) rotate(210deg);
+  }
+  75% {
+    transform: translate3d(70px, 75vh, 0) rotate(290deg);
+  }
+  100% {
+    transform: translate3d(-20px, 110vh, 0) rotate(380deg);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: .45; }
+  50% { opacity: 1; }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.18); }
+  30% { transform: scale(1); }
+}
+
+@keyframes waves {
+  from { transform: translateX(-25px); }
+  to { transform: translateX(25px); }
+}
+
+@media (max-width: 650px) {
+  .scene {
+    height: 330px;
+    transform: scale(.82);
+    margin-bottom: -35px;
+  }
+
+  .island {
+    width: 390px;
+  }
+
+  .little-line {
+    font-size: 12px;
+  }
+
+  .love-note {
+    padding: 0 25px;
+    font-size: 13px;
+  }
+
+  footer {
+    font-size: 9px;
+  }
 }

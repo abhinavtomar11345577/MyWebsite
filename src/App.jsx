@@ -1,122 +1,95 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./index.css";
+
+const petals = Array.from({ length: 28 }, (_, i) => i);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowMessage(true), 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <main className="page">
+      {/* Falling cherry blossom petals */}
+      <div className="petals" aria-hidden="true">
+        {petals.map((petal) => (
+          <span
+            key={petal}
+            className="petal"
+            style={{
+              left: `${(petal * 37) % 100}%`,
+              animationDelay: `${(petal * 0.43) % 8}s`,
+              animationDuration: `${7 + ((petal * 1.17) % 6)}s`,
+            }}
+          >
+            🌸
+          </span>
+        ))}
+      </div>
+
+      <section className="hero">
+        <div className="stars" aria-hidden="true">
+          ✦　·　✧　　·　✦　　·　✧
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+
+        <div className="scene">
+          <div className="moon">☾</div>
+
+          <div className="cloud cloud-one">☁</div>
+          <div className="cloud cloud-two">☁</div>
+
+          <div className="island">
+            <div className="tree">
+              <div className="trunk"></div>
+              <div className="crown">🌸</div>
+            </div>
+
+            <div className="girl">
+              <div className="hair"></div>
+              <div className="head"></div>
+              <div className="face">⌣</div>
+              <div className="body"></div>
+              <div className="book">📖</div>
+            </div>
+
+            <div className="grass grass-one"></div>
+            <div className="grass grass-two"></div>
+          </div>
+
+          <div className="water">
+            <span>〰〰〰〰〰〰〰〰〰〰〰</span>
+            <span>〰〰〰〰〰〰〰〰〰〰〰</span>
+            <span>〰〰〰〰〰〰〰〰〰〰〰</span>
+          </div>
+        </div>
+
+        <div className={`message ${showMessage ? "visible" : ""}`}>
+          <p className="little-line">For the girl who makes my world softer...</p>
+
+          <h1>
+            I love you,
+            <br />
+            <span>Nithu!!</span>
+          </h1>
+
+          <p className="love-note">
+            If I could choose one little place in the whole world
+            <br />
+            to sit quietly and watch the sunset,
+            <br />
+            I'd still choose wherever you are. ♡
           </p>
+
+          <div className="heart">♥</div>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+
+        <footer>made with a little bit of code & a lot of love ♡</footer>
       </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    </main>
+  );
 }
 
-export default App
+export default App;
